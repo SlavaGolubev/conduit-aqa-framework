@@ -1,0 +1,50 @@
+[project]
+name = "aqa-playwright-framework"
+version = "0.1.0"
+description = "UI and API Test Automation Framework with Playwright and Pytest"
+readme = "README.md"
+requires-python = "==3.10.*"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "playwright>=1.48.0",
+    "pytest>=8.3.0",
+    "pytest-playwright>=0.5.2",
+    "pytest-xdist>=3.6.1",
+    "allure-pytest>=2.13.5",
+    "httpx>=0.27.2",
+    "pydantic>=2.9.2",
+    "faker>=30.3.0",
+    "ruff>=0.7.0",
+]
+
+[tool.pytest.ini_options]
+# Папка, где pytest будет искать тесты
+testpaths = ["tests"]
+# Флаги запуска по умолчанию: подробный вывод + генерация отчетов Allure + логи
+addopts = [
+    "-v",
+    "--alluredir=allure-results",
+    "--clean-alluredir",
+]
+# Регистрация кастомных маркеров, чтобы pytest не ругался ворнингами
+markers = [
+    "smoke: быстрые критические тесты",
+    "regression: полный регрессионный прогон",
+    "ui: тесты пользовательского интерфейса",
+    "api: тесты API",
+]
+# Настройка логирования в консоли при падении тестов
+log_cli = true
+log_cli_level = "INFO"
+
+[tool.ruff]
+# Максимальная длина строки (современный стандарт вместо старых 79 символов)
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+# Включаем правила: E/W (pycodestyle), F (pyflakes), I (сортировка импортов), B (bugbear)
+select = ["E", "W", "F", "I", "B"]
+ignore = []
