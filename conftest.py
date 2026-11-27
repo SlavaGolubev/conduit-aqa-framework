@@ -28,6 +28,7 @@ def page(page: Page):
     page.set_default_timeout(settings.timeout)
     return page
 
+
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
