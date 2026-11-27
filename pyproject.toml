@@ -17,6 +17,7 @@ dev = [
     "pydantic>=2.9.2",
     "faker>=30.3.0",
     "ruff>=0.7.0",
+    "pydantic-settings>=2.15.0",
 ]
 
 [tool.pytest.ini_options]
